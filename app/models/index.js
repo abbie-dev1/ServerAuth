@@ -16,6 +16,7 @@ const sequelize = new Sequelize(
     }
   }
 );
+//const db = require('./db');
 const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
