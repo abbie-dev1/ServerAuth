@@ -1,5 +1,3 @@
-//======================
-
 //importing modules
 const {Sequelize, DataTypes} = require('sequelize')
 
