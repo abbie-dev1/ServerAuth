@@ -1,36 +1,27 @@
-const config = require("../models/config.js");
-const Sequelize = require("sequelize");
-const sequelize = new Sequelize(
-  config.DB,
-  config.USER,
-  config.PASSWORD,
-  {
-    host: config.HOST,
-    dialect: config.dialect,
-    operatorsAliases: false,
-    pool: {
-      max: config.pool.max,
-      min: config.pool.min,
-      acquire: config.pool.acquire,
-      idle: config.pool.idle
-    }
-  }
-);
-//const db = require('./db');
-const db = {};
-db.Sequelize = Sequelize;
-db.sequelize = sequelize;
-db.user = require("../models/user.model.js")(sequelize, Sequelize);
-db.role = require("../models/role.model.js")(sequelize, Sequelize);
-db.role.belongsToMany(db.user, {
-  through: "user_roles",
-  foreignKey: "roleId",
-  otherKey: "userId"
-});
-db.user.belongsToMany(db.role, {
-  through: "user_roles",
-  foreignKey: "userId",
-  otherKey: "roleId"
-});
+//======================
+
+//importing modules
+const {Sequelize, DataTypes} = require('sequelize')
+
+//Database connection with dialect of postgres specifying the database we are using
+//port for my database is 5433
+//database name is Abbie
+const sequelize = new Sequelize(`postgres://postgres:123456@localhost:5433/Abbie`, {dialect: "postgres"})
+
+//checking if connection is done
+    sequelize.authenticate().then(() => {
+        console.log(`Database connected to Abbie`)
+    }).catch((err) => {
+        console.log(err)
+    })
+
+    const db = {}
+    db.Sequelize = Sequelize
+    db.sequelize = sequelize
+
+//connecting to model
 db.ROLES = ["user", "admin", "moderator"];
-module.exports = db;
+db.users = require('./userModel') (sequelize, DataTypes)
+
+//exporting the module
+module.exports = db
