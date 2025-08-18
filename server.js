@@ -17,9 +17,9 @@ app.use(express.urlencoded({ extended: false }))
 
 
 //synchronizing the database and forcing it to false so we dont lose data
-db.sequelize.sync({ force: true }).then(() => {
-  console.log("db has been re sync")
-});
+// db.sequelize.sync({ force: true }).then(() => {
+//   console.log("db has been re sync")
+// });
 
 
 //routes for the user API
@@ -31,4 +31,4 @@ app.get('/', (req, res) => {
 });
 
 //listening to server connection
-app.listen(PORT, () => console.log(`Server is connected on ${PORT}`))
+app.listen(PORT, () => console.log(`Server is connected  on ${PORT}`))
