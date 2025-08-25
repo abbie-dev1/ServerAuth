@@ -31,4 +31,4 @@ app.get('/', (req, res) => {
 });
 
 //listening to server connection
-app.listen(PORT, () => console.log(`Server is connected  on ${PORT}`))
+app.listen(PORT, () => console.log(`Server is connected on ${PORT}`))
