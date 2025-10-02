@@ -21,7 +21,6 @@ app.use(express.urlencoded({ extended: false }))
 //   console.log("db has been re sync")
 // });
 
-
 //routes for the user API
 app.use('/api/users', userRoutes);
 
